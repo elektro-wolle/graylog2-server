@@ -132,7 +132,9 @@ public class SessionsResource extends RestResource {
             Date validUntil = new DateTime(s.getLastAccessTime(), DateTimeZone.UTC).plus(s.getTimeout()).toDate();
             String newSessionId = s.getId().toString();
             String username = getUsernameFromSession(s);
-            return SessionResponse.create(validUntil, newSessionId, username);
+            Object idTokenAttribute = s.getAttribute("id_token");
+            String idToken = idTokenAttribute == null ? null : String.valueOf(idTokenAttribute);
+            return SessionResponse.create(validUntil, newSessionId, username, idToken);
         } else {
             throw new NotAuthorizedException("Invalid credentials.", "Basic realm=\"Graylog Server session\"");
         }

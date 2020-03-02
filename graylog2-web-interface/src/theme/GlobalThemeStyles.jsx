@@ -1062,25 +1062,6 @@ const GlobalThemeStyles = createGlobalStyle`
     text-align: right;
   }
 
-  .dynatable-per-page-label {
-    font-size: 14px;
-  }
-
-  .dynatable-search {
-    font-size: 14px;
-  }
-
-  .dynatable-search input,
-  .dynatable-per-page select {
-    position: relative;
-    top: 3px;
-    margin-left: 3px;
-  }
-
-  .dynatable-pagination-links li:first-child {
-    display: none;
-  }
-
   .field-graph-query-container {
     position: relative;
     padding-left: 10px;
@@ -1900,7 +1881,7 @@ const GlobalThemeStyles = createGlobalStyle`
     padding: 0;
   }
 
-  .indexer-failures-body select.dynatable-per-page-select {
+  .indexer-failures-body {
     position: relative;
     top: 0;
   }

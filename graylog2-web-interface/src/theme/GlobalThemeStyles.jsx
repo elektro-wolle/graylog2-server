@@ -1881,11 +1881,6 @@ const GlobalThemeStyles = createGlobalStyle`
     padding: 0;
   }
 
-  .indexer-failures-body {
-    position: relative;
-    top: 0;
-  }
-
   table.indexer-failures {
     margin-top: 10px;
   }

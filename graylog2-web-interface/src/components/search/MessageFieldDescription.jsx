@@ -7,7 +7,6 @@ class MessageFieldDescription extends React.Component {
   static propTypes = {
     message: PropTypes.object.isRequired,
     fieldName: PropTypes.string.isRequired,
-    fieldValue: PropTypes.any.isRequired,
     renderForDisplay: PropTypes.func.isRequired,
     customFieldActions: PropTypes.node,
   };
@@ -21,16 +20,13 @@ class MessageFieldDescription extends React.Component {
   };
 
   _shouldShowTerms = () => {
-    return this.state.messageTerms.size !== 0;
+    const { messageTerms } = this.state;
+    return messageTerms.size !== 0;
   };
 
   _getFormattedTerms = () => {
-    const termsMarkup = [];
-    this.state.messageTerms.forEach((term, idx) => {
-      termsMarkup.push(<span key={idx} className="message-terms">{term}</span>);
-    });
-
-    return termsMarkup;
+    const { messageTerms } = this.state;
+    return messageTerms.map(term => <span key={term} className="message-terms">{term}</span>);
   };
 
   _getFormattedFieldActions = () => {
@@ -39,13 +35,13 @@ class MessageFieldDescription extends React.Component {
   };
 
   render() {
-    const { fieldName } = this.props;
+    const { fieldName, renderForDisplay } = this.props;
     const className = fieldName === 'message' || fieldName === 'full_message' ? 'message-field' : '';
 
     return (
       <dd className={className} key={`${fieldName}dd`}>
         {this._getFormattedFieldActions()}
-        <div className="field-value">{this.props.renderForDisplay(this.props.fieldName)}</div>
+        <div className="field-value">{renderForDisplay(fieldName)}</div>
         {this._shouldShowTerms()
         && (
         <Alert bsStyle="info" onDismiss={() => this.setState({ messageTerms: Immutable.Map() })}>
